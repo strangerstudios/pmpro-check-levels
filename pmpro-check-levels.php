@@ -3,7 +3,7 @@
 Plugin Name: PMPro Check Levels
 Plugin URI: http://www.paidmembershipspro.com/wp/pmpro-check-levels/
 Description: A collection of customizations useful when allowing users to pay by check for Paid Memberships Pro levels.
-Version: .1
+Version: .2
 Author: Stranger Studios
 Author URI: http://www.strangerstudios.com
 */
@@ -21,9 +21,11 @@ Author URI: http://www.strangerstudios.com
 
 /*
 	Settings, Globals and Constants
+	
+	Uncomment these lines and change them or set these values in another plugin or your active theme's functions.php file.
 */
-global $pmpro_check_levels;
-$pmpro_check_levels = array(2);					//set this array to include the ids of levels where users should be forced to pay by check
+//global $pmpro_check_levels;
+//$pmpro_check_levels = array(1);					//set this array to include the ids of levels where users should be forced to pay by check
 
 /*
 	Change gateway to "check" for the levels specified
@@ -36,9 +38,17 @@ function pmprocl_init_check_gateway_for_levels()
 		//set gateway to check and make check a valid gateway
 		$_REQUEST['gateway'] = "check";
 		add_filter('pmpro_valid_gateways', create_function('$gateways', '$gateways[]="check"; return $gateways;'));
+		
+		//set this global so we don't require billing fields
+		global $pmpro_requirebilling;
+		$pmpro_requirebilling = false;
+		
+		//don't use the pmpro-add-paypal-express on this level
+		remove_action("pmpro_checkout_boxes", "pmproappe_pmpro_checkout_boxes", 20);
+		remove_filter("pmpro_valid_gateways", "pmproappe_pmpro_valid_gateways");
 	}
 }
-add_action('init', 'pmprocl_init_check_gateway_for_levels');
+add_action('init', 'pmprocl_init_check_gateway_for_levels', 20);
 
 /*
 	Fix admin change email when changing members who paid by check.
