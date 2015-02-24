@@ -1,8 +1,8 @@
-=== PMPro Check Levels ===
+=== Paid Memberships Pro - Check Levels Add On ===
 Contributors: strangerstudios
 Tags: paid memberships pro, pmpro, check, cheque
 Requires at least: 3.4
-Tested up to: 3.8.1
+Tested up to: 4.1.1
 Stable tag: .2
 
 A collection of customizations useful when allowing users to pay by check for Paid Memberships Pro levels.
@@ -37,6 +37,9 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 Please visit our premium support site at http://www.paidmembershipspro.com for more documentation and our support forums.
 
 == Changelog == 
+= .3 =
+* Standardizing plugin names and descriptions.
+
 = .2 =
 * The global $pmpro_check_levels var must be set in another plugin now or uncommented out at the top of the plugin.
 * Removing filters from the pmpro-add-paypal-express plugin so billing fields don't show up on the checkout page for a check level. (Thanks, boldfish)

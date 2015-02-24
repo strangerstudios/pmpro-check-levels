@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: PMPro Check Levels
+Plugin Name: Paid Memberships Pro - Check Levels Add On
 Plugin URI: http://www.paidmembershipspro.com/wp/pmpro-check-levels/
 Description: A collection of customizations useful when allowing users to pay by check for Paid Memberships Pro levels.
-Version: .2
+Version: .3
 Author: Stranger Studios
 Author URI: http://www.strangerstudios.com
 */
@@ -75,3 +75,18 @@ function pmprocl_pmpro_email_data($email_data, $email)
 }
 add_filter('pmpro_email_data', 'pmprocl_pmpro_email_data', 10, 2);
 
+/*
+Function to add links to the plugin row meta
+*/
+function pmprocl_plugin_row_meta($links, $file) {
+	if(strpos($file, 'pmpro-check-levels.php') !== false)
+	{
+		$new_links = array(
+			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plugins-on-github/pmpro-check-payment-level/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmpro' ) ) . '">' . __( 'Docs', 'pmpro' ) . '</a>',
+			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro' ) ) . '">' . __( 'Support', 'pmpro' ) . '</a>',
+		);
+		$links = array_merge($links, $new_links);
+	}
+	return $links;
+}
+add_filter('plugin_row_meta', 'pmprocl_plugin_row_meta', 10, 2);
