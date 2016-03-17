@@ -48,6 +48,7 @@ function pmprocl_init_check_gateway_for_levels()
 		remove_filter("pmpro_valid_gateways", "pmproappe_pmpro_valid_gateways");
 	}
 }
+add_action('init', 'pmprocl_init_check_gateway_for_levels', 5);
 add_action('init', 'pmprocl_init_check_gateway_for_levels', 20);
 
 /*

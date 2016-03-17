@@ -2,8 +2,8 @@
 Contributors: strangerstudios
 Tags: paid memberships pro, pmpro, check, cheque
 Requires at least: 3.4
-Tested up to: 4.1.1
-Stable tag: .2
+Tested up to: 4.4.2
+Stable tag: .3
 
 A collection of customizations useful when allowing users to pay by check for Paid Memberships Pro levels.
 
@@ -38,7 +38,8 @@ Please visit our premium support site at http://www.paidmembershipspro.com for m
 
 == Changelog == 
 = .3 =
-* Standardizing plugin names and descriptions.
+* BUG: Running init function at priority 5 AND 20 now to make sure the gateway value is set to check while other gateway code is running. This fixes issues where gateways would add billing fields and other code to checkout before the gateway had been switched to check.
+* ENHANCEMENT: Standardizing plugin names and descriptions.
 
 = .2 =
 * The global $pmpro_check_levels var must be set in another plugin now or uncommented out at the top of the plugin.
