@@ -37,7 +37,7 @@ function pmprocl_init_check_gateway_for_levels()
 	{
 		//set gateway to check and make check a valid gateway
 		$_REQUEST['gateway'] = "check";
-		add_filter('pmpro_valid_gateways', create_function('$gateways', '$gateways[]="check"; return $gateways;'));
+		add_filter('pmpro_valid_gateways', function($gateways) { $gateways[]="check"; return $gateways; });
 		
 		//set this global so we don't require billing fields
 		global $pmpro_requirebilling;
